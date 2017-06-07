@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.6
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{AD399DC0-AECC-4797-A8FF-951615A58437}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{8485BE98-F392-4E80-B192-72DEE9C76927}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{0B17044C-A6D3-48F7-987A-BAB751AC9EE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodingMilitia.MoarCollections", "src\CodingMilitia.MoarCollections\CodingMilitia.MoarCollections.csproj", "{22F10D5F-20AB-486B-9365-AB5D1E18B794}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodingMilitia.MoarCollections.Tests", "tests\CodingMilitia.MoarCollections.Tests\CodingMilitia.MoarCollections.Tests.csproj", "{427303DA-D22D-46F4-91E2-2F864C20A5BF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{22F10D5F-20AB-486B-9365-AB5D1E18B794}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22F10D5F-20AB-486B-9365-AB5D1E18B794}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22F10D5F-20AB-486B-9365-AB5D1E18B794}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22F10D5F-20AB-486B-9365-AB5D1E18B794}.Release|Any CPU.Build.0 = Release|Any CPU
+		{427303DA-D22D-46F4-91E2-2F864C20A5BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{427303DA-D22D-46F4-91E2-2F864C20A5BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{427303DA-D22D-46F4-91E2-2F864C20A5BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{427303DA-D22D-46F4-91E2-2F864C20A5BF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{22F10D5F-20AB-486B-9365-AB5D1E18B794} = {AD399DC0-AECC-4797-A8FF-951615A58437}
+		{427303DA-D22D-46F4-91E2-2F864C20A5BF} = {8485BE98-F392-4E80-B192-72DEE9C76927}
+	EndGlobalSection
+EndGlobal
