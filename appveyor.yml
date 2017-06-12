@@ -9,6 +9,6 @@ environment:
 build_script:
 - cmd: powershell -Command .\build.ps1
 test_script:
-- cmd: echo noop
+- cmd: echo "test_script -> NOOP (tests are performed in cake script)"
 after_test:
-- cmd: echo noop
+- cmd: echo "after_test -> NOOP (packaging is performed in cake script)"
