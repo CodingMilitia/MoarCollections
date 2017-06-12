@@ -1,8 +1,12 @@
+#addin Cake.Git
+
 var target = Argument("target", "Default");
-var outputDir = "../artifacts/";
-var solutionPath = "../CodingMilitia.MoarCollections.sln";
-var project = "../src/CodingMilitia.MoarCollections/CodingMilitia.MoarCollections.csproj";
-var testProject = "../tests/CodingMilitia.MoarCollections.Tests/CodingMilitia.MoarCollections.Tests.csproj";
+var outputDir = "./artifacts/";
+var solutionPath = "./CodingMilitia.MoarCollections.sln";
+var project = "./src/CodingMilitia.MoarCollections/CodingMilitia.MoarCollections.csproj";
+var testProject = "./tests/CodingMilitia.MoarCollections.Tests/CodingMilitia.MoarCollections.Tests.csproj";
+var currentBranch = GitBranchCurrent("./").FriendlyName;
+var isReleaseBuild = currentBranch == "master";
 
 Task("Clean")
     .Does(() => {
@@ -22,7 +26,12 @@ Task("Build")
     .IsDependentOn("Clean")
     .IsDependentOn("Restore")
     .Does(() => {
-        MSBuild(solutionPath);
+        MSBuild(solutionPath,
+                new MSBuildSettings 
+                {
+                    Configuration = isReleaseBuild ? "Release" : "Debug"
+                }
+        );
     });
 
 Task("Test")
@@ -37,12 +46,18 @@ Task("Package")
         PackageProject("CodingMilitia.MoarCollections", project);
     });
 
-Task("Default")
-    .IsDependentOn("Package");
+if(isReleaseBuild)
+{
+    Task("Default")
+        .IsDependentOn("Package");
+}
+else
+{
+    Task("Default")
+        .IsDependentOn("Test");
+}
 
 RunTarget(target);
-
-
 
 private void PackageProject(string projectName, string projectPath)
 {
