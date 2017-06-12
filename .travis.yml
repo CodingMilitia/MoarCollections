@@ -1,0 +1,10 @@
+language: csharp
+solution: CodingMilitia.MoarCollections.sln
+matrix:
+  include:
+    - dotnet: 1.0.4
+      mono: none
+      dist: trusty
+    - mono: latest
+script:
+  - ./build.sh -target Test
