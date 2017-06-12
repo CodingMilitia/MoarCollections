@@ -1,20 +1,21 @@
 #addin Cake.Git
 
 var target = Argument("target", "Default");
-var outputDir = "./artifacts/";
+var artifactsDir = "./artifacts/";
 var solutionPath = "./CodingMilitia.MoarCollections.sln";
 var project = "./src/CodingMilitia.MoarCollections/CodingMilitia.MoarCollections.csproj";
 var testProject = "./tests/CodingMilitia.MoarCollections.Tests/CodingMilitia.MoarCollections.Tests.csproj";
 var currentBranch = GitBranchCurrent("./").FriendlyName;
 var isReleaseBuild = currentBranch == "master";
 
+
 Task("Clean")
     .Does(() => {
-        if (DirectoryExists(outputDir))
+        if (DirectoryExists(artifactsDir))
         {
-            DeleteDirectory(outputDir, recursive:true);
+            DeleteDirectory(artifactsDir, recursive:true);
         }
-        CreateDirectory(outputDir);
+        CreateDirectory(artifactsDir);
     });
 
 Task("Restore")
@@ -26,8 +27,8 @@ Task("Build")
     .IsDependentOn("Clean")
     .IsDependentOn("Restore")
     .Does(() => {
-        MSBuild(solutionPath,
-                new MSBuildSettings 
+        DotNetCoreBuild(solutionPath,
+                new DotNetCoreBuildSettings 
                 {
                     Configuration = isReleaseBuild ? "Release" : "Debug"
                 }
@@ -43,7 +44,7 @@ Task("Test")
 Task("Package")
     .IsDependentOn("Test")
     .Does(() => {
-        PackageProject("CodingMilitia.MoarCollections", project);
+        PackageProject("CodingMilitia.MoarCollections", project, artifactsDir);
     });
 
 if(isReleaseBuild)
@@ -59,11 +60,11 @@ else
 
 RunTarget(target);
 
-private void PackageProject(string projectName, string projectPath)
+private void PackageProject(string projectName, string projectPath, string outputDirectory)
 {
     var settings = new DotNetCorePackSettings
         {
-            OutputDirectory = outputDir,
+            OutputDirectory = outputDirectory,
             NoBuild = true
         };
 

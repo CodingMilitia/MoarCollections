@@ -1,0 +1,10 @@
+dist: trusty
+language: csharp
+matrix:
+  include:
+    - dotnet: 1.0.4
+      mono: latest
+before_install:
+  - chmod +x build.sh
+script:
+  - ./build.sh --target Test
