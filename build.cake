@@ -6,7 +6,7 @@ var solutionPath = "./CodingMilitia.MoarCollections.sln";
 var project = "./src/CodingMilitia.MoarCollections/CodingMilitia.MoarCollections.csproj";
 var testProject = "./tests/CodingMilitia.MoarCollections.Tests/CodingMilitia.MoarCollections.Tests.csproj";
 var currentBranch = GitBranchCurrent("./").FriendlyName;
-var isReleaseBuild = currentBranch != "master";
+var isReleaseBuild = currentBranch == "master";
 
 Task("Clean")
     .Does(() => {
