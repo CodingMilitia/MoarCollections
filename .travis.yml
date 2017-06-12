@@ -1,12 +1,10 @@
+dist: trusty
 language: csharp
-solution: CodingMilitia.MoarCollections.sln
 matrix:
   include:
     - dotnet: 1.0.4
-      mono: none
-      dist: trusty
-    - mono: latest
+      mono: latest
 before_install:
   - chmod +x build.sh
 script:
-  - ./build.sh -target Test
+  - ./build.sh --target Test
