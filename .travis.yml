@@ -6,5 +6,7 @@ matrix:
       mono: none
       dist: trusty
     - mono: latest
+before_install:
+  - chmod +x build.sh
 script:
   - ./build.sh -target Test
