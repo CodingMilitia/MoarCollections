@@ -9,6 +9,6 @@ environment:
 build_script:
 - cmd: powershell -Command .\build.ps1
 test_script:
-- cmd: powershell % noop
+- cmd: echo noop
 after_test:
-- cmd: powershell % noop
+- cmd: echo noop
