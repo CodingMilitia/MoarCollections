@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-
-namespace CodingMilitia.MoarCollections.Dictionaries
+﻿namespace CodingMilitia.MoarCollections.Dictionaries
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+
     /// <summary>
     /// <para>
-    /// Acts as a wrapper over a <see cref="Dictionary{TKey, TValue}"/> with the ability of returning a default value (static or using a <see cref="Func{TKey, TValue}"/>) 
+    /// Acts as a wrapper over a <see cref="Dictionary{TKey, TValue}"/> with the ability of returning a default value (static or using a <see cref="Func{TKey, TValue}"/>)
     /// when the requested key is not present.
     /// </para>
     /// <para>
@@ -51,12 +51,6 @@ namespace CodingMilitia.MoarCollections.Dictionaries
             _defaultValueFunc = defaultValueFunc ?? throw new ArgumentNullException(nameof(defaultValueFunc));
         }
 
-        public TValue this[TKey key]
-        {
-            get => _backingDictionary.TryGetValue(key, out var value) ? value : _defaultValueFunc != null ? _defaultValueFunc(key) : _defaultValue;
-            set => _backingDictionary[key] = value;
-        }
-
         public ICollection<TKey> Keys => _backingDictionary.Keys;
 
         public ICollection<TValue> Values => _backingDictionary.Values;
@@ -64,6 +58,12 @@ namespace CodingMilitia.MoarCollections.Dictionaries
         public int Count => _backingDictionary.Count;
 
         public bool IsReadOnly => ((IDictionary<TKey, TValue>)_backingDictionary).IsReadOnly;
+
+        public TValue this[TKey key]
+        {
+            get => _backingDictionary.TryGetValue(key, out var value) ? value : _defaultValueFunc != null ? _defaultValueFunc(key) : _defaultValue;
+            set => _backingDictionary[key] = value;
+        }
 
         public void Add(TKey key, TValue value) => _backingDictionary.Add(key, value);
 
